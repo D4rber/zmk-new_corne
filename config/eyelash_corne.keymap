@@ -23,11 +23,10 @@
 #define ZMK_MOUSE_DEFAULT_SCRL_VAL 20    // 10
 
 #define DEFAULT 0
-#define COL   1
-#define NAV   2
-#define NUM   3
-#define SYM   4
-#define FUN   5
+#define NAV   4
+#define NUM   1
+#define SYM   2
+#define FUN   3
 
 / {
     behaviors {
@@ -67,36 +66,49 @@
         };
 
         lower_layer {
-            display-name = "NUMBER";
+            display-name = "NUM";
             bindings = <
-   &trans    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6            &kp N7   &kp N8    &kp N9    &kp N0    &kp BSPC
-   &trans    &kp SYM      &kp LALT     &kp LCTRL    &kp LSHFT    &trans         &kp MINUS         &kp N4   &kp N5    &kp N6    &kp PLUS  &trans
-   &trans    &trans       &trans       &trans       &trans       &trans         &kp KP_MULTIPLY   &kp N1   &kp N2    &kp N3    &kp FSLH  &trans
-                          	        &none     &none      &none         &kp RET           &kp N0   &kp DOT
+   &trans    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5                                &mmv MOVE_UP                           &kp N6            &kp N7   &kp N8    &kp N9    &kp N0    &kp BSPC
+   &trans    &kp SYM      &kp LALT     &kp LCTRL    &kp LSHFT    &trans                      &mmv MOVE_LEFT  &mkp LCLK  &mmv MOVE_RIGHT       &kp MINUS         &kp N4   &kp N5    &kp N6    &kp PLUS  &trans
+   &trans    &trans       &trans       &trans       &trans       &trans         &kp SPACE              &mmv MOVE_DOWN                         &kp KP_MULTIPLY   &kp N1   &kp N2    &kp N3    &kp FSLH  &trans
+                          	        &none     &none      &none                           &kp RET           &kp N0   &kp DOT
             >;
             sensor-bindings = <&scroll_encoder>;
         };
 
         raise_layer {
-            display-name = "SYMBOL";
+            display-name = "SYM";
             bindings = <
-  &trans  &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &trans
-   &trans  &kp SYM   &kp LALT  &kp LCTRL &kp LSHFT  &trans      &kp MINUS &kp EQUAL &kp LBRC        &kp RBRC &kp BSLH &kp GRAVE
-   &trans  &trans    &trans    &trans    &trans    &trans      &kp UNDER &kp PLUS  &kp LBKT        &kp RBKT &kp PIPE &kp TILDE
+   &trans  &kp EXCL  &kp AT    &kp HASH  &kp DLLR   &kp PRCNT                                &mmv MOVE_UP                         &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &trans
+   &trans  &kp SYM   &kp LALT  &kp LCTRL &kp LSHFT  &trans                         &mmv MOVE_LEFT  &mkp LCLK  &mmv MOVE_RIGHT     &kp MINUS &kp EQUAL &kp LBRC        &kp RBRC &kp BSLH &kp GRAVE
+   &trans  &trans    &trans    &trans    &trans     &trans            &kp SPACE              &mmv MOVE_DOWN                       &kp UNDER &kp PLUS  &kp LBKT        &kp RBKT &kp PIPE &kp TILDE
                     	     &none    &none    &kp BKSP    &none    &none  &none
             >;
             sensor-bindings = <&scroll_encoder>;
         };
 
         layer_3 {
-            display-name = "Fn";
+            display-name = "FUN";
             bindings = <
-  &trans  &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &trans
-   &trans  &kp SYM   &kp LALT  &kp LCTRL &kp LSHFT  &trans      &kp MINUS &kp EQUAL &kp LBRC        &kp RBRC &kp BSLH &kp GRAVE
-   &trans  &trans    &trans    &trans    &trans    &trans      &kp UNDER &kp PLUS  &kp LBKT        &kp RBKT &kp PIPE &kp TILDE
-                    	     &none    &none    &kp BKSP    &none    &none  &none
+   &trans      &kp F1        &kp F2        &kp F3        &kp F4        &kp F5                                 &mmv MOVE_UP                      &kp F6   &kp F7   &kp F8    &kp F9    &kp F10  &trans
+   &trans      &kp SYM       &kp LALT      &kp LCTRL     &kp LSHFT     &trans                       &mmv MOVE_LEFT  &mkp LCLK  &mmv MOVE_RIGHT  &trans   &kp F4   &kp F5    &kp F6    &kp F11  &trans
+   &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp SPACE              &mmv MOVE_DOWN                    &trans   &kp F1   &kp F2    &kp F3    &kp F12  &trans
+                          	&none      &none       &none        &none          &none   &none
             >;
             sensor-bindings = <&scroll_encoder>;
         };
+
+        layer_4 {
+            display-name = "NAV";
+            bindings = <
+            &trans  &trans  &trans   &trans    &trans    &trans                             &mmv MOVE_UP                       &trans  &kp HOME   &kp UP    &kp END    &trans  &trans
+            &trans  &kp SYM &kp LALT &kp LCTRL &kp LSHFT &trans                   &mmv MOVE_LEFT  &mkp LCLK  &mmv MOVE_RIGHT   &trans  &kp LEFT   &kp DOWN  &kp RIGHT  &trans  &trans
+            &trans  &trans  &trans   &trans    &trans    &trans      &kp SPACE              &mmv MOVE_DOWN                     &trans  &kp PG_UP  &kp INS   &kp PG_DN  &trans  &trans
+                                    &none   &lt SYM SPACE &lt NUM BSPC    &none  &none     &none
+            >;
+            sensor-bindings = <&scroll_encoder>;
+        };
+
+        
     };
 };
