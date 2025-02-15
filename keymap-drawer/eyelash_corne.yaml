@@ -40,8 +40,8 @@ layers:
   - M
   - {t: ',', s: <}
   - {t: ., s: '>'}
-  - {t: /, s: '?'}
-  - $$mdi:keyboard-esc$$
+  - {t: /, h: '$$mdi:apple-keyboard-shift$$', s: '?'}
+  - LWIN
   - $$mdi:apple-keyboard-option$$
   - {t: '$$mdi:keyboard-space$$', h: SYM}
   - {t: '$$mdi:backspace$$', h: NUM}
